@@ -1,3 +1,8 @@
+//!
+//!Implementation of the function to compute factorials
+//!
+
+/// Implemented by recursive functions  
 pub fn factorial(n: i64) -> i64 {
     match n {
         0 => 1,
@@ -32,6 +37,7 @@ mod tests_factorial{
     }
 }
 
+/// Implemented by 'for loop' 
 pub fn factorial_loop(n: i64) -> i64 {
     if n == 0{
         1
@@ -70,6 +76,8 @@ mod tests_factorial_loop{
     }
 }
 
+/// Implemented by 'for loop' 
+///
 pub fn factorial_f64(n: i32) -> f64 {
     if n == 0{
         1.0
