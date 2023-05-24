@@ -11,17 +11,21 @@ pub struct CGCoefficient {
    m_3 : i64,
 } 
 
+fn sign(n: u32) -> f64 {
+    if n % 2 == 0 {
+        1.0
+    } else {
+        -1.0
+    }
+}
+
 impl CGCoefficient {
     pub fn new(j_1: i64, m_1: i64, j_2: i64, m_2: i64, j_3: i64, m_3:i64) -> CGCoefficient {
         CGCoefficient{j_1, m_1, j_2, m_2, j_3, m_3}
     }
 
-    fn get_j_range(&self) -> (i64, i64) {
-        (self.j_1 + self.j_2, (self.j_1 - self.j_2).abs())
-    }
-
     fn is_triangle(&self) -> bool {
-        let (j_min, j_max) = self.get_j_range();
+        let (j_min, j_max) = (self.j_1 + self.j_2, (self.j_1 - self.j_2).abs());
 
         let is_triangle_m = self.m_3 != self.m_1 + self.m_2;
         let is_traianble_j = self.j_3 < j_min || j_max < self.j_3;
@@ -29,7 +33,15 @@ impl CGCoefficient {
         is_triangle_m && is_traianble_j
     }
 
-    fn show_list(&self) {
+    fn delta(&self) -> f64 {
+        ((2 * self.j_3 + 1) as f64) 
+            *(factorial::factorial(self.j_3 + self.j_1 - self.j_2) as f64)
+            *(factorial::factorial(self.j_3 - self.j_1 + self.j_2) as f64)
+            *(factorial::factorial(self.j_1 + self.j_2 - self.j_3) as f64)
+            /(factorial::factorial(self.j_3 + self.j_1 + self.j_2 + 1) as f64)
+    }
+
+    pub fn show_list(&self) {
         println!("(j_3, m_3) = ({}, {})", self.j_3, self.m_3);
         println!("(j_1, m_1) = ({}, {})", self.j_1, self.m_1);
         println!("(j_2, m_2) = ({}, {})", self.j_2, self.m_2);
@@ -40,22 +52,9 @@ impl CGCoefficient {
 impl CGCoefficient {
     pub fn calc_value(&self) -> f64 {
 
-        if self.m_3 != self.m_1 + self.m_2 {
+        if self.is_triangle() {
             return 0.0;
         }
-
-        let j_min = (self.j_1 - self.j_2).abs();
-        let j_max = self.j_1 + self.j_2;
-
-        if self.j_3 < j_min || j_max < self.j_3 {
-            return 0.0;
-        }
-
-        let s_0 = ((2 * self.j_3 + 1) as f64) 
-            *(factorial::factorial(self.j_3 + self.j_1 - self.j_2) as f64)
-            *(factorial::factorial(self.j_3 - self.j_1 + self.j_2) as f64)
-            *(factorial::factorial(self.j_1 + self.j_2 - self.j_3) as f64)
-            /(factorial::factorial(self.j_3 + self.j_1 + self.j_2 + 1) as f64);
 
         let s = factorial::factorial(self.j_3 + self.m_3) 
             * factorial::factorial(self.j_3 - self.m_3);
@@ -79,22 +78,15 @@ impl CGCoefficient {
             let k_4 = factorial::factorial(self.j_3 - self.j_2 + self.m_1 + k);
             let k_5 = factorial::factorial(self.j_3 - self.j_1 - self.m_2 + k);
 
-            let sign = if k % 2 == 0{
-                1.0
-            } else {
-                -1.0
-            };
-
             if(k_1 == -100 || k_2 == -100 || k_3 == -100
                || k_4 == -100 || k_5 == -100){
                 res_cg += 0.0;
             } else {
-                res_cg += sign
-                / ((factorial::factorial(k) * k_1 * k_2 * k_3 * k_4 * k_5)  as f64);
+                res_cg += sign(k as u32)/((factorial::factorial(k) * k_1 * k_2 * k_3 * k_4 * k_5)  as f64);
             }
         }
 
-        (s_0 as f64).powf(0.5) * s * res_cg 
+        self.delta().powf(0.5) * s * res_cg 
     }
 }
 
@@ -128,11 +120,11 @@ mod test_cg_coefficient{
     }
 
     #[test]
-    fn is_same_c_rust() {
+    fn is_same_c_impl() {
         let cg_1 = CGCoefficient::new(2, 1, 1, 1, 3, 2);
         assert!((cg_1.calc_value() - cg_1.calc_value_c()).abs() < std::f64::EPSILON);
 
-        let cg_2 = CGCoefficient::new(2, 2, 3, 2, 5,4);
+        let cg_2 = CGCoefficient::new(2, 2, 3, 2, 5, 4);
         assert!((cg_2.calc_value() - cg_2.calc_value_c()).abs() < std::f64::EPSILON);
     }
 }
