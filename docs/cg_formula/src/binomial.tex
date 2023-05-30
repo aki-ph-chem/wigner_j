@@ -1,0 +1,39 @@
+\subsection{二項係数による表現}
+
+\begin{comment}
+この式の階乗の分数の部分を二項係数(binomial)にした公式もある
+多くのCG係数を計算するコードでは二項係数で計算しているものがほとんどであった。
+
+漸化式を再帰的に計算するよりも級数で直接計算する方法の方が効率が良い
+階乗(factorial)を計算するよりも二項係数(binomial)で計算する方が良い
+\end{comment}
+
+
+$\bra{J_1 J_2 m_1 m_2}\ket{J_3 m_3} \quad (m_1 + m_2 = m_3)$
+
+は階乗ではなく二項係数を用いた表現では以下の級数で書ける
+
+\begin{align}\label{cg_binomial}
+    &\bra{J_1 J_2 m_1 m_2}\ket{J_3 m_3} =  \\ \notag
+    %
+    &\delta_{m_1+m_2, m_3}\sqrt{\frac{(2J_3 + 1)^2}{(2J_1 + 1)(2J_2 + 1)}} \\ \notag
+    %
+    &\times
+    %
+    \sqrt{\frac{ F_{J_1 + J_2 - J_3}(J_1 + J_2 + J_3 + 1)F_{J_3 + m_3}(2J_3)}
+        {F_{J_1 - J_2 + J_3}(J_1 + J_2 + J_3 + 1)
+    F_{J_2 - J_1 + J_3}(J_1 + J_2 + J_3 + 1)F_{J_1 + m_1}(2J_1)F_{J_2 + m_2}(2J_2) }} \\ \notag
+    %
+    &\times 
+    %
+     \sum_n
+    (-1)^{n} F_n(J_1 + J_2 - J_3)F_{J_2 + m_2 - n}(J_3 + m_3)F_{J_1 - m_1 - n}(J_3 - m_3)
+\end{align}
+
+ここで、$F_{n}(m)$は二項係数で$_nC_k$よく知られている通り以下のように定義する。
+
+\begin{align}
+    F_m(n) = \frac{n!}{m!(n - m)!}
+\end{align}
+
+多くのClebsch-Gordan係数の実装では、(\ref{cg_fact})の階乗による表現ではなくてこの二項係数による実装を採用しているものが多かった。
