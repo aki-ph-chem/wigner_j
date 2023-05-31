@@ -1,3 +1,6 @@
+//!
+//! functions for calculate Clebsch-Gordan coefficient and Wigner 3j-symbol
+//!
 use crate::factorial;
 
 /// Calculates the sign
@@ -12,6 +15,7 @@ pub fn sign(n: i32) -> f64 {
     }
 } 
 
+/// test to determine if triangle conditions are met
 pub fn is_triangle(j_1: i64, j_2: i64, j_3: i64,
                    m_1: i64, m_2: i64, m_3: i64) -> bool {
 
@@ -23,6 +27,12 @@ pub fn is_triangle(j_1: i64, j_2: i64, j_3: i64,
         is_triangle_m && is_traianble_j
 }
 
+/// calculation of triangle factor
+///
+/// ```text
+/// (j_1 + j_2 - j_3)!(j_1 - j_2 + j_3)!(j_2 - j_1 + j_3)!/(j_1 + j_2 + j_3 + 1)!
+/// ```
+///
 pub fn delta(j_1: i64, j_2: i64, j_3: i64) -> f64{
         ((2 * j_3 + 1) as f64) 
             *(factorial::factorial(j_3 + j_1 - j_2) as f64)
@@ -31,6 +41,8 @@ pub fn delta(j_1: i64, j_2: i64, j_3: i64) -> f64{
             /(factorial::factorial(j_3 + j_1 + j_2 + 1) as f64)
 }
 
+/// show list of j_1, j_1, j_3, m_1, m_2, m_3
+/// for clebsch-gordan coefficient
 pub fn show_list(j_1: i64, j_2: i64, j_3: i64,
                    m_1: i64, m_2: i64, m_3: i64) {
 
@@ -38,6 +50,8 @@ pub fn show_list(j_1: i64, j_2: i64, j_3: i64,
                  j_1, m_1, j_2, m_2, j_3, m_3);
 } 
 
+/// show list of j_1, j_1, j_3, m_1, m_2, m_3
+/// for wigner 3j-symbol
 pub fn show_list_3j(j_1: i64, j_2: i64, j_3: i64,
                    m_1: i64, m_2: i64, m_3: i64) {
 
@@ -45,6 +59,7 @@ pub fn show_list_3j(j_1: i64, j_2: i64, j_3: i64,
                  ,j_1, j_2, j_3, m_1, m_2, m_3);
 } 
 
+/// calculate Clebsch-Gordan coefficient
 pub fn calc_cg_raw(j_1: i64, j_2: i64, j_3: i64,
                    m_1: i64, m_2: i64, m_3: i64) -> f64 {
 
