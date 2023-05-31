@@ -38,6 +38,13 @@ pub fn show_list(j_1: i64, j_2: i64, j_3: i64,
                  j_1, m_1, j_2, m_2, j_3, m_3);
 } 
 
+pub fn show_list_3j(j_1: i64, j_2: i64, j_3: i64,
+                   m_1: i64, m_2: i64, m_3: i64) {
+
+        println!("( {} ,{}, {} )\n( {}, {}, {} ) "
+                 ,j_1, j_2, j_3, m_1, m_2, m_3);
+} 
+
 pub fn calc_cg_raw(j_1: i64, j_2: i64, j_3: i64,
                    m_1: i64, m_2: i64, m_3: i64) -> f64 {
 
