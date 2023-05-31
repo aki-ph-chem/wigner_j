@@ -23,3 +23,7 @@ path = "examples/cg_coefficient_example.rs"
 [[example]]
 name = "ex_2"
 path = "examples/three_j_example.rs"
+
+[[example]]
+name = "ex_3"
+path = "examples/cg_coefficient_cffi.rs"
