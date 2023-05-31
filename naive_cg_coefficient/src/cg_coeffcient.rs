@@ -62,6 +62,7 @@ impl CGCoefficient {
 
 impl CGCoefficient {
 
+    /// show list of j and m like `<j_1, m_1, j_2, m_2|j_3, m_3>`
     pub fn show_list(&self) {
         internal::show_list(self.j_1, self.j_2, self.j_3,
                             self.m_1, self.m_2, self.m_3);
