@@ -60,6 +60,12 @@ impl CGCoefficient {
     pub fn new(j_1: i64, m_1: i64, j_2: i64, m_2: i64, j_3: i64, m_3:i64) -> CGCoefficient {
         CGCoefficient{j_1, m_1, j_2, m_2, j_3, m_3}
     }
+
+    /// return set of j and m as tuple
+    pub fn get_jm(&self) ->(i64, i64, i64, i64, i64, i64){
+        (self.j_1, self.j_2, self.j_3, 
+         self.m_1, self.m_2, self.m_3)
+    }
 }
 
 impl CGCoefficient {

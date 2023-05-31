@@ -25,6 +25,7 @@
 //!
 
 use crate::internal;
+use crate::cg_coeffcient;
 
 #[derive(Debug,PartialEq, Eq)]
 pub struct ThreeJSymbol {
@@ -80,6 +81,13 @@ impl ThreeJSymbol {
     }
 }
 
+impl From<cg_coeffcient::CGCoefficient> for ThreeJSymbol {
+    fn from(value: cg_coeffcient::CGCoefficient) -> ThreeJSymbol {
+        let (j_1, j_2, j_3, m_1, m_2, m_3) = value.get_jm();
+        ThreeJSymbol::new(j_1, m_1, j_2, m_2, j_3, -m_3)
+    }
+}
+
 #[cfg(test)]
 mod test_3j_symbol {
     use super::*;
@@ -88,5 +96,17 @@ mod test_3j_symbol {
     fn show_list() {
         let tj_1 = ThreeJSymbol::new(5, 2, 4, 3, 9, 5);
         tj_1.show_list();
+    }
+
+    #[test]
+    fn test_from() {
+        let tree_j_1 = ThreeJSymbol::new(7, 2, 4, 3 ,9, 5);
+        tree_j_1.show_list();
+
+        let cg = cg_coeffcient::CGCoefficient::new(7, 2, 4, 3, 9, -5);
+        let tree_j_2 = ThreeJSymbol::from(cg);
+        tree_j_2.show_list();
+
+        assert_eq!(tree_j_1, tree_j_2);
     }
 }
