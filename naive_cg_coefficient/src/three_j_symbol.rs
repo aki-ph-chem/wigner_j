@@ -8,11 +8,11 @@
 //! ## Example
 //!
 //! ```rust
-//! use naive_cg_coefficient::three_j_symbol;
+//! use naive_cg_coefficient::three_j_symbol::ThreeJSymbol;
 //!
 //! fn main() {
 //!     // create a new `TreeJSymbol` instance
-//!     let three_j = TreeJSymbol::new(2, 1, 1, 1, 3, 2);
+//!     let three_j = ThreeJSymbol::new(2, 1, 1, 1, 3, 2);
 //!
 //!     // Calculate the 3j-symbol value
 //!     let value = three_j.calc_value();
@@ -27,7 +27,7 @@
 use crate::internal;
 
 #[derive(Debug,PartialEq, Eq)]
-pub struct TreeJSymbol {
+pub struct ThreeJSymbol {
    j_1 : i64,
    m_1 : i64,
    j_2 : i64,
@@ -36,7 +36,7 @@ pub struct TreeJSymbol {
    m_3 : i64,
 }
 
-impl TreeJSymbol {
+impl ThreeJSymbol {
     /// Create a new instance of `CGCoefficient`.
     ///
     /// # Arguments
@@ -51,11 +51,12 @@ impl TreeJSymbol {
     /// # Examples
     ///
     /// ```
-    /// let tree_j = TreeJSymbol::new(2, 1, 1, 1, 3, 2);
+    /// use naive_cg_coefficient::three_j_symbol::ThreeJSymbol;
+    /// let tree_j = ThreeJSymbol::new(2, 1, 1, 1, 3, 2);
     /// ```
     ///
-    pub fn new(j_1: i64, m_1: i64, j_2: i64, m_2: i64, j_3: i64, m_3:i64) -> TreeJSymbol {
-        TreeJSymbol{j_1, m_1, j_2, m_2, j_3, m_3}
+    pub fn new(j_1: i64, m_1: i64, j_2: i64, m_2: i64, j_3: i64, m_3:i64) -> ThreeJSymbol {
+        ThreeJSymbol{j_1, m_1, j_2, m_2, j_3, m_3}
     }
 
     /// show list of j and m like 
@@ -86,7 +87,7 @@ mod test_3j_symbol {
 
     #[test]
     fn show_list() {
-        let tj_1 = TreeJSymbol::new(5, 2, 4, 3, 9, 5);
+        let tj_1 = ThreeJSymbol::new(5, 2, 4, 3, 9, 5);
         tj_1.show_list();
     }
 }
