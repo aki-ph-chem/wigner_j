@@ -1,0 +1,18 @@
+[package]
+name = "naive_cg_coefficient"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+link = "cg_coefficient_c"
+build = "build.rs"
+[dependencies]
+libc = "0.2.144"
+
+[build-dependencies]
+cc = "1.0.79"
+
+[build]
+rustflags = "-C link-args=-lm"
+

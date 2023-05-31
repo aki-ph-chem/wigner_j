@@ -1,0 +1,38 @@
+\documentclass[dvipdfmx]{jsarticle}
+
+% アンカーを作る
+\usepackage[dvipdfmx]{hyperref}
+\usepackage{pxjahyper}
+
+\usepackage{comment}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage{physics}
+\usepackage{comment}
+
+\begin{document}
+\title{Clebsch-Gordan係数の計算}
+\author{Akira Shimizu}
+\thispagestyle{empty}
+\maketitle
+
+% 目次
+\tableofcontents
+\clearpage
+
+\section{はじめに}
+
+Clebsch-Gordan係数は多くの場面で顔を出すため、値を知ることは重要である。
+以下ではよく知られている階乗を用いて表現された公式とその公式と等価な二項係数による表現について説明する。
+
+\section{Clebsch-Gordan係数の表現}
+\input{src/factorial.tex}
+\input{src/binomial.tex}
+\input{src/sum_range.tex}
+
+\newpage
+\section{Appendix}
+\input{src/appendix_1.tex}
+
+\end{document}

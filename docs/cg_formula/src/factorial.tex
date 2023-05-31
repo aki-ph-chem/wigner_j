@@ -1,0 +1,32 @@
+\subsection{階乗による表現}
+
+Clebsch-Grodan係数$\bra{j_1m_1,j_2m_2}\ket{j_3m_3}$
+は以下のとても長い式で機械的に計算することができる。
+
+\begin{align}\label{cg_fact}
+    &\bra{j_1m_1, j_2m_2}\ket{j_3m_3} \\ \notag 
+    = 
+    % delta
+    &\delta_{m_1 + m_2, m_3}
+    \sqrt{2j_3 + 1}
+    \sqrt{\frac{(j_1 + j_2 - j_3)!(j_1 - j_2 + j_3)!(-j_1 + j_2 + j_3)!}{(j_1 + j_2 + j_3 + 1)!}}  \\ \notag
+    % l_2
+    &\times 
+    \sqrt{(j_1 + m_1)!(j_1 -m_1)!(j_2 + m_2)!(j_2 - m_2)!(j_3 + m_3)!(j_3 - m_3)!} \\ \notag
+    % l_3
+    &\times
+    \sum_z (-1)^z \frac{1}{z!(j_1 + j_2 - j_3 - z)!(j_1 - m_1 - z)!(j_2 + m_2 - z)!(j_3 - j_2 + m_1 + z)!(j_3 - j_1 - m_2 + z)!}
+\end{align}
+
+ここで$z$は$z$についての階乗の値が正となる範囲で取るものとする。
+
+最初の$j_1,j_2,j_3$のみからなる部分を$\Delta_{j_1j_2j_3}$として
+
+\begin{align}
+    \Delta_{j_1j_2j_3} = \sqrt{2j_3 + 1}
+    \sqrt{\frac{(j_1 + j_2 - j_3)!(j_1 - j_2 + j_3)!(-j_1 + j_2 + j_3)!}{(j_1 + j_2 + j_3 + 1)!}}  \\ \notag
+\end{align}
+
+のように取り出しtriangle factorと言うことがある。
+
+ただし、この式には多くの階乗の計算が含まれているため、注意しないとすぐにオーバーフローしていしまう。
