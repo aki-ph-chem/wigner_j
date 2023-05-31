@@ -53,7 +53,7 @@ impl CGCoefficient {
     /// # Examples
     ///
     /// ```
-    /// //let cg = CGCoefficient::new(2, 1, 1, 1, 3, 2);
+    /// let cg = CGCoefficient::new(2, 1, 1, 1, 3, 2);
     /// ```
     pub fn new(j_1: i64, m_1: i64, j_2: i64, m_2: i64, j_3: i64, m_3:i64) -> CGCoefficient {
         CGCoefficient{j_1, m_1, j_2, m_2, j_3, m_3}
