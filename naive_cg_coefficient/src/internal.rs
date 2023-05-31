@@ -77,12 +77,11 @@ pub fn calc_cg_raw(j_1: i64, j_2: i64, j_3: i64,
         let s = ((s * s_1 * s_2) as f64).powf(0.5);
 
         let k_max = std::cmp::min( 
-            std::cmp::min(j_1 + j_2 - j_3, j_1 - m_1)
-            , j_2 + m_2
-            );
+            std::cmp::min(j_1 + j_2 - j_3, j_1 - m_1), j_2 + m_2);
+        let k_min = std::cmp::max(std::cmp::max(-j_3 + j_2 - m_1, -j_3 + j_1 + m_2), 0);
 
         let mut res_cg = 0.0;
-        for k in 0 .. k_max + 1 {
+        for k in k_min .. k_max + 1 {
             let k_1 = factorial::factorial(j_1 + j_2 - j_3 - k);
             let k_2 = factorial::factorial(j_1 - m_1 - k);
             let k_3 = factorial::factorial(j_2 + m_2- k);

@@ -74,10 +74,9 @@ impl ThreeJSymbol {
 
     /// Calculate th value of th 3j-symbol
     pub fn calc_value(&self) -> f64 {
-        internal::sign((self.j_1  - self.j_2 - self.m_3) as i32)
-           /(self.j_3 as f64 + 1.0).powf(0.5) 
-           * internal::calc_cg_raw(self.j_1, self.j_2, self.j_3,
-                                   self.m_1, self.m_2, -self.m_3)
+        (internal::sign((self.j_1  - self.j_2 - self.m_3) as i32)/( (2 * self.j_3) as f64 + 1.0).powf(0.5))
+            * internal::calc_cg_raw(self.j_1, self.j_2, self.j_3,
+                                    self.m_1, self.m_2, -self.m_3)
     }
 }
 
