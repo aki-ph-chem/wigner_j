@@ -26,4 +26,17 @@ fn main(){
     cg_5.show_list();
     let value_5 = cg_5.calc_value();
     println!("res_cg_5 = {}", value_5);
+
+    let cg_6 = cg::CGCoefficient::new(5, 0, 4, 0, 9, 0);
+    cg_6.show_list();
+    let value_6 = cg_6.calc_value();
+    println!("res_cg_6 = {}", value_6);
+
+    // overflow
+    /*
+    let cg_7 = cg::CGCoefficient::new(4, 2, 5, 3, 9, 5);
+    cg_7.show_list();
+    let value_7 = cg_7.calc_value();
+    println!("res_cg_7 = {}", value_7);
+    */
 }
