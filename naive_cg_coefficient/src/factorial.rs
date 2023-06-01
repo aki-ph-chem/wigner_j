@@ -38,7 +38,9 @@ mod tests_factorial{
 }
 
 /// Implemented by 'for loop' 
-//pub fn factorial_loop(n: i64) -> i64 {
+///
+/// Warning!: For n = 21 or greater, this factorial function will overflow 
+/// because it exceeds the maximum value of `i64`.
 pub fn factorial(n: i64) -> i64 {
     if n == 0{
         1
@@ -74,6 +76,14 @@ mod tests_factorial_loop{
 
         let factorial_6 = 6 * 5 * factorial_4;
         assert_eq!(factorial_6, factorial(6));
+    }
+
+    #[test]
+    fn test_factorial_big_n() {
+        let _res = factorial(10);
+        let _res = factorial(20);
+        // 21! > 2^{64} => Overflow
+        //let _res = factorial(21);
     }
 }
 
