@@ -36,3 +36,7 @@ path = "examples/benchmark/error.rs"
 [[example]]
 name = "calc_cg"
 path = "examples/benchmark/calc_cg.rs"
+
+[[example]]
+name = "ex_binomial"
+path = "examples/cg_coefficient_binomial.rs"

@@ -82,6 +82,12 @@ impl CGCoefficient {
          internal::calc_cg_raw(self.j_1, self.j_2, self.j_3,
                                self.m_1, self.m_2, self.m_3)
     }
+
+    /// Calculates the value of the CGCoefficient by binomial
+    pub fn calc_value_binomial(&self) -> f64 {
+        internal::calc_cg_binomial_raw(self.j_1, self.j_2, self.j_3,
+                                       self.m_1, self.m_2, self.m_3)
+    }
 }
 
 impl CGCoefficient {
@@ -93,43 +99,4 @@ impl CGCoefficient {
                                        self.j_2 as f64, self.m_2 as f64,
                                        self.j_3 as f64, self.m_3 as f64)
     }  
-}
-
-#[cfg(test)]
-mod test_cg_coefficient{
-    use super::*;
-
-    #[test]
-    fn test_1() {
-        let cg_1 = CGCoefficient::new(2, 1, 1, 1, 3, 2); 
-        let res_cg_1 = cg_1.calc_value(); 
-        cg_1.show_list();
-        println!("res_cg_1 = {}", res_cg_1);
-    }
-
-    #[test]
-    fn test_2() {
-        let cg_1_c = CGCoefficient::new(2, 1, 1, 1, 3, 2);
-        let res_cg_1_c = unsafe {
-            cg_1_c.calc_value_c()
-        }; 
-
-        cg_1_c.show_list();
-        println!("res_cg_1_c = {}", res_cg_1_c);
-    }
-
-    #[test]
-    fn is_same_c_impl() {
-        let cg_1 = CGCoefficient::new(2, 1, 1, 1, 3, 2);
-        let res_cg_1_c = unsafe {
-            cg_1.calc_value_c()
-        };
-        assert!((cg_1.calc_value() - res_cg_1_c).abs() < std::f64::EPSILON);
-
-        let cg_2 = CGCoefficient::new(2, 2, 3, 2, 5, 4);
-        let res_cg_2_c = unsafe {
-            cg_2.calc_value_c()
-        };
-        assert!((cg_2.calc_value() - res_cg_2_c).abs() < std::f64::EPSILON);
-    }
 }

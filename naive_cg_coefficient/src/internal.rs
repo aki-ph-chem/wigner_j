@@ -2,6 +2,7 @@
 //! functions for calculate Clebsch-Gordan coefficient and Wigner 3j-symbol
 //!
 use crate::factorial;
+use crate::binomial;
 
 /// Calculates the sign
 ///
@@ -93,3 +94,33 @@ pub fn calc_cg_raw(j_1: i64, j_2: i64, j_3: i64,
 
         delta(j_1, j_2, j_3).powf(0.5) * s * res_cg 
     }
+
+/// calculate Clebsch-Gordan coefficient by binomial 
+pub fn calc_cg_binomial_raw(j_1: i64, j_2: i64, j_3: i64,
+                            m_1: i64, m_2: i64, m_3: i64) -> f64 { 
+
+        if is_triangle(j_1, j_2, j_3, m_1, m_2, m_3) {
+            return 0.0;
+        }
+
+        let s = (2.0 * (j_3 as f64) + 1.0)/((2.0 *(j_1 as f64) + 1.0 ) * (2.0 * (j_2 as f64) + 1.0)).powf(0.5); 
+
+        let numerator = binomial::binomial(j_1 + j_2 + j_3 + 1, j_1 + j_2 - j_3) 
+            * binomial::binomial(2*j_3, j_3 + m_3);
+        let denominator = binomial::binomial(j_1 + j_2 + j_3 + 1, j_1 - j_2 + j_3) 
+            * binomial::binomial(j_1 + j_2 + j_3 + 1, j_2 - j_1 + j_3)
+            * binomial::binomial(2*j_1, j_1 + m_1) * binomial::binomial(2*j_2, j_2 + m_2); 
+       
+        let k_max = std::cmp::min(std::cmp::min(j_1 + j_2 - j_3, j_1 - m_1), j_2 + m_2);
+        let k_min = std::cmp::max(std::cmp::max(-j_3 + j_2 - m_1, -j_3 + j_1 + m_2), 0);
+
+        let mut res_cg = 0.0;
+        for k in k_min .. k_max + 1 {
+            res_cg += sign(k as i32) 
+                *binomial::binomial(j_1 + j_2 - j_3, k)
+                *binomial::binomial(j_3 + m_3, j_2 + m_2 - k)
+                *binomial::binomial(j_3 - m_3, j_1 - m_1 - k);
+        }
+
+        s * (numerator / denominator).powf(0.5) * res_cg 
+}
