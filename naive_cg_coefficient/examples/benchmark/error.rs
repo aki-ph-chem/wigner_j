@@ -10,9 +10,9 @@ fn calc_error(j_1: i64, j_2: i64, j_3: i64, m_3: i64) -> Option<f64>{
         }
     } 
 
-    if sq_sum_of_cg_coefficient == 0.0 {
+    if sq_sum_of_cg_coefficient < std::f64::EPSILON {
         None
-    } else if sq_sum_of_cg_coefficient == 1.0 {
+    } else if (sq_sum_of_cg_coefficient - 1.0).abs() < std::f64::EPSILON {
         None
     } else {
         Some((1.0 - sq_sum_of_cg_coefficient).abs() )
