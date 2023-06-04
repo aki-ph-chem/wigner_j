@@ -89,7 +89,7 @@ pub fn calc_cg_raw(j_1: i64, j_2: i64, j_3: i64,
             let k_4 = factorial::factorial(j_3 - j_2 + m_1 + k);
             let k_5 = factorial::factorial(j_3 - j_1 - m_2 + k);
 
-            res_cg += sign(k as i32)/((factorial::factorial(k) * k_1 * k_2 * k_3 * k_4 * k_5)  as f64);
+            res_cg += sign(k as i32)/(factorial::factorial(k) * k_1 * k_2 * k_3 * k_4 * k_5);
         }
 
         delta(j_1, j_2, j_3).powf(0.5) * s * res_cg 
