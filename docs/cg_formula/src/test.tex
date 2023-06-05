@@ -1,0 +1,29 @@
+\subsection{値のテスト}
+
+クレブシュゴルダン係数には規格直交性
+
+\begin{align}\label{orthogonal_1}
+    \sum_{m_1,m_2}\bra{JM}\ket{j_1 m_1 j_2 m_2}\bra{j_1 m_1 j_2 m_2}\ket{J^{\prime} M^{\prime}} 
+    &= \bra{JM}\ket{J^{\prime} M^{\prime}} \\ \notag
+    &= \delta_{J,J^{\prime}} \delta_{M,M^{\prime}}
+\end{align}
+
+が成立する。(\ref{orthogonal_1})の方の式に対して$J = J^{\prime}, M = M^{\prime}$とすると
+
+\begin{align}\label{orhtogonal_2_2}
+    \sum_{m_1,m_2} |\bra{JM}\ket{j_1 m_1 j_2 m_2}|^2 = 1
+\end{align}
+
+が成り立つ。
+
+
+本来これは厳密に$1$であるが、浮動小数点演算によって計算を行うため、誤差が生じる。
+そこで(\ref{orhtogonal_2_2})の右辺のと$1$との差の絶対値を$j_1,j_2$の関数として$\epsilon_{j_1,j_2}$として
+以下で定義し、この値を評価する。
+
+\begin{align}\label{error_cg}
+    \epsilon_{j_1 j_2} = \left| 1 - \sum_{m_1,m_2}|\bra{J M}\ket{j_1 m_1 j_2 m_2}|^2 \right|
+\end{align}
+
+しかし、$\epsilon_{j_1 j_2}$はとても小さい数値で(論文では一番小さくて$10^{-33}$ほどのオーダー)であるので負の常用対数
+すなわち$-\log \epsilon_{j_1 j_2}$の値を$\sqrt{j_1 j_2}$に対してplotして評価する。
