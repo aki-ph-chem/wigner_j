@@ -28,6 +28,11 @@ pub fn is_triangle(j_1: i64, j_2: i64, j_3: i64,
     is_triangle_m && is_traianble_j
 }
 
+/// test  where j_1,j_2,j_3 is positive of not 
+pub fn is_j_positive(j_1: i64, j_2: i64, j_3: i64) -> bool {
+    j_1 < 0 && j_2 < 0 && j_3 < 0
+ }
+
 /// calculation of triangle factor
 ///
 /// ```text
@@ -62,7 +67,7 @@ pub fn show_list_3j(j_1: i64, j_2: i64, j_3: i64,
 pub fn calc_cg_raw(j_1: i64, j_2: i64, j_3: i64,
                    m_1: i64, m_2: i64, m_3: i64) -> f64 {
 
-    if is_triangle(j_1, j_2, j_3, m_1, m_2, m_3){
+    if is_triangle(j_1, j_2, j_3, m_1, m_2, m_3) || is_j_positive(j_1, j_2, j_3){
         return 0.0;
     }
 
@@ -97,7 +102,7 @@ pub fn calc_cg_raw(j_1: i64, j_2: i64, j_3: i64,
 pub fn calc_cg_binomial_raw(j_1: i64, j_2: i64, j_3: i64,
                             m_1: i64, m_2: i64, m_3: i64) -> f64 { 
 
-    if is_triangle(j_1, j_2, j_3, m_1, m_2, m_3){
+    if is_triangle(j_1, j_2, j_3, m_1, m_2, m_3) || is_j_positive(j_1, j_2, j_3){
         return 0.0;
     }
 
