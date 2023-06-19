@@ -35,17 +35,17 @@ pub fn is_j_positive(j_1: i64, j_2: i64, j_3: i64) -> bool {
  }
 
 fn is_condition_j(j_1: i64, j_2: i64, j_3: i64) -> bool {
-    let is_j_positive = j_1 > 0 && j_2 > 0 && j_3 > 0;
+    let is_j_positive = j_1 >= 0 && j_2 >= 0 && j_3 >= 0;
 
-    let (j_max, j_min) = (j_1 + j_2, (j_1 - j_2).abs());
-    let is_traiangle = j_3 < j_max || j_min < j_3;
+    let (j_max, j_min) = (j_1 + j_2, (j_2 - j_1).abs());
+    let is_traiangle = j_3 <= j_max && j_min <= j_3;
 
     is_j_positive && is_traiangle
 }
 
 fn is_condition_jm(j_1: i64, j_2: i64, j_3: i64,
                    m_1: i64, m_2: i64, m_3: i64) -> bool {
-    let j_m = j_1 > m_1.abs() && j_2 > m_2.abs() && j_3 > m_3.abs();
+    let j_m = j_1 >= m_1.abs() && j_2 >= m_2.abs() && j_3 >= m_3.abs();
     let is_triangle_m = m_3 == m_1 + m_2;
 
     j_m && is_triangle_m
@@ -120,7 +120,7 @@ pub fn calc_cg_raw(j_1: i64, j_2: i64, j_3: i64,
 pub fn calc_cg_binomial_raw(j_1: i64, j_2: i64, j_3: i64,
                             m_1: i64, m_2: i64, m_3: i64) -> f64 { 
 
-    if !is_condition_j(j_1, j_2, j_3) || !is_condition_jm(j_1, j_2, j_3, m_1, m_2, -m_3){
+    if !is_condition_j(j_1, j_2, j_3) || !is_condition_jm(j_1, j_2, j_3, m_1, m_2, m_3){
         return 0.0;
     }
 
