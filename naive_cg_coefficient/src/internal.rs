@@ -8,11 +8,12 @@ use crate::binomial;
 ///
 /// if n is even `sign()` return 1.0, otherwise return -1.0
 ///
+#[inline]
 pub fn sign(n: i32) -> f64 {
-    if n %2 == 0 {
-        1.0
+    if n&1 != 0 {
+        -1.0
     } else {
-        -1.0 
+        1.0
     }
 } 
 
