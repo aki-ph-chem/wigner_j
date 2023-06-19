@@ -17,23 +17,7 @@ pub fn sign(n: i32) -> f64 {
     }
 } 
 
-/// test to determine if triangle conditions are met
-pub fn is_triangle(j_1: i64, j_2: i64, j_3: i64,
-                   m_1: i64, m_2: i64, m_3: i64) -> bool {
-
-    let (j_min, j_max) = (j_1 + j_2, (j_1 - j_2).abs());
-
-    let is_triangle_m = m_3 != m_1 + m_2;
-    let is_traianble_j = j_3 < j_min || j_max < j_3;
-
-    is_triangle_m && is_traianble_j
-}
-
-/// test  where j_1,j_2,j_3 is positive of not 
-pub fn is_j_positive(j_1: i64, j_2: i64, j_3: i64) -> bool {
-    j_1 < 0 && j_2 < 0 && j_3 < 0
- }
-
+/// check the condtions of j
 fn is_condition_j(j_1: i64, j_2: i64, j_3: i64) -> bool {
     let is_j_positive = j_1 >= 0 && j_2 >= 0 && j_3 >= 0;
 
@@ -43,6 +27,7 @@ fn is_condition_j(j_1: i64, j_2: i64, j_3: i64) -> bool {
     is_j_positive && is_traiangle
 }
 
+/// check the conditoin of j,m
 fn is_condition_jm(j_1: i64, j_2: i64, j_3: i64,
                    m_1: i64, m_2: i64, m_3: i64) -> bool {
     let j_m = j_1 >= m_1.abs() && j_2 >= m_2.abs() && j_3 >= m_3.abs();
