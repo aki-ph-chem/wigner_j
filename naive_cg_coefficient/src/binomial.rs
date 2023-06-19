@@ -1,6 +1,8 @@
 /// calculate binomial by recursion
 pub fn binomial(n: i64, k: i64) -> f64 {
-    if n == k || k == 0 {
+    if k > n {
+        0.0
+    } else if n == k || k == 0 {
         1.0
     } else{
         binomial(n - 1, k -1) + binomial(n - 1, k)
