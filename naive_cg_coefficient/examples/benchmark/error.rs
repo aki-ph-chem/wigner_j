@@ -1,5 +1,6 @@
 use naive_cg_coefficient;
 use naive_cg_coefficient::cg_coeffcient as cg;
+
 enum CalcBy {
     Factorial,
     Binomial,
@@ -47,22 +48,33 @@ fn calc_error_all_j(j_3_max: i64, calc_by: CalcBy) -> Vec<(f64, f64)> {
         }
     }
 
-    res
-}
+    res }
 
 fn main() {
     let argv:Vec<_> = std::env::args().collect(); 
 
-    if argv.len() < 2 {
+    if argv.len() < 3 {
         eprintln!("Error: invalid args");
+        let help = r" 
+            cargo run --example binomial 3 # calclate by binomial for j_max =3
+            cargo run --example factorial 3 # calclate by factorial for j_max =3
+            ";
+        eprintln!("usage: {}", help);
         std::process::exit(1);
     }
 
-    let max_j = argv[1].clone().parse::<i64>().expect("Invalid number");
-    let res = calc_error_all_j(max_j, CalcBy::Factorial);
-    //let res = calc_error_all_j(max_j, CalcBy::Binomial);
+    let calc_method = &argv[1];
+    let max_j =&argv[2].parse::<i64>().expect("Invalid number");
 
-    for (x, y) in res {
-        println!("{}\t{}", x, y);
+    let results = match calc_method.as_str() {
+        "binomial" => Some(calc_error_all_j(*max_j, CalcBy::Binomial)),
+        "factorial" => Some(calc_error_all_j(*max_j, CalcBy::Factorial)),
+        _ => {eprintln!("Error: invalid method"); None},
+    };
+
+    if let Some(res) = results{
+        for (x, y) in res{
+            println!("{}\t{}", x, y);
+        }
     }
 }
