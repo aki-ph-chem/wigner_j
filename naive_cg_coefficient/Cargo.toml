@@ -28,6 +28,10 @@ path = "examples/three_j_example.rs"
 name = "ex_3"
 path = "examples/cg_coefficient_cffi.rs"
 
+[[example]]
+name = "ex_binomial"
+path = "examples/cg_coefficient_binomial.rs"
+
 ## benchmark
 [[example]]
 name = "error"
@@ -36,7 +40,3 @@ path = "examples/benchmark/error.rs"
 [[example]]
 name = "calc_cg"
 path = "examples/benchmark/calc_cg.rs"
-
-[[example]]
-name = "ex_binomial"
-path = "examples/cg_coefficient_binomial.rs"
