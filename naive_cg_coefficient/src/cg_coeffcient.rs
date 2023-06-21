@@ -25,7 +25,6 @@
 //! For more information on CG coefficients and their calculations, refer to the documentation
 //! of the individual methods and the associated mathematical formulas.
 
-use crate::factorial;
 use crate::cg_coefficient_cffi;
 use crate::internal;
 
@@ -95,7 +94,7 @@ impl CGCoefficient {
     /// Calculates the value of the CGCoefficient 
     /// from `cg_coefficient_cffi::CGcoeff_c()` 
     pub unsafe fn calc_value_c(&self) -> f64 {
-        cg_coefficient_cffi::CGcoeff_c(self.j_1 as f64, self.m_1 as f64,
+        cg_coefficient_cffi::cg_coeff_c(self.j_1 as f64, self.m_1 as f64,
                                        self.j_2 as f64, self.m_2 as f64,
                                        self.j_3 as f64, self.m_3 as f64)
     }  
