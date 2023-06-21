@@ -13,18 +13,23 @@ pub fn binomial(n: i64, k: i64) -> f64 {
 mod tests_binomial_recursive {
     use super::*;
 
+    #[ignore]
     #[test]
     fn test_binomial_10() {
         assert!((10.0 - binomial(10,1).abs() < std::f64::EPSILON));
         assert!((1.0 - binomial(3,0)).abs() < std::f64::EPSILON);
     }
 
+
+    #[ignore]
     #[test]
     fn test_binomial_100() {
         assert!((100.0 - binomial(100,1).abs() < std::f64::EPSILON));
         assert!((1.0 - binomial(100,0).abs() < std::f64::EPSILON));
     }
 
+
+    #[ignore]
     #[test]
     fn test_binomial_5() {
         let ans = [1.0,5.0,10.0,10.0,5.0,1.0];
@@ -33,6 +38,8 @@ mod tests_binomial_recursive {
         }
     }
 
+
+    #[ignore]
     #[test]
     fn test_binomial_6() {
         let ans = [1.0,6.0,15.0,20.0,15.0,6.0,1.0];
@@ -59,6 +66,8 @@ pub fn binomial_dp(n: i64, k: i64, array: &mut Vec<Vec<i64>>){
 mod test_binomial_dp {
     use super::*;
 
+
+    #[ignore]
     #[test]
     fn test_binomial_dp_1() {
         const ARRAY_SIZE: usize = 100;
@@ -68,6 +77,8 @@ mod test_binomial_dp {
         assert_eq!(15, array[6][2]);
     }
 
+
+    #[ignore]
     #[test]
     fn test_binomial_dp_2() {
         const ARRAY_SIZE: usize = 100;

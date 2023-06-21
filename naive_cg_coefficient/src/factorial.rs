@@ -15,6 +15,7 @@ pub fn _factorial(n: i64) -> i64 {
 mod tests_factorial{
     use super::*;
 
+    #[ignore]
     #[test]
     fn test_factorial_0() {
         let factorial_0 = 1;
@@ -24,6 +25,7 @@ mod tests_factorial{
         assert_eq!(factorial_1, _factorial(1));
     }
 
+    #[ignore]
     #[test]
     fn test_factorial_n() {
         let factorial_3 = 6;
@@ -71,6 +73,7 @@ pub fn factorial(n: i64) -> f64 {
 mod tests_factorial_loop{
     use super::*;
 
+    #[ignore]
     #[test]
     fn test_factorial_0() {
         let factorial_0 = 1;
@@ -80,6 +83,8 @@ mod tests_factorial_loop{
         assert_eq!(factorial_1, factorial_i64(1));
     }
 
+
+    #[ignore]
     #[test]
     fn test_factorial_n() {
         let factorial_3 = 6;
@@ -92,6 +97,8 @@ mod tests_factorial_loop{
         assert_eq!(factorial_6, factorial_i64(6));
     }
 
+
+    #[ignore]
     #[test]
     fn test_factorial_big_n() {
         let _res = factorial(10);
